@@ -1,6 +1,10 @@
-class Queue:
+from collections.abc import Iterator
+
+
+class Queue(Iterator):
     def __init__(self):
         self._data = []
+        self.index = 0
 
     def __len__(self):
         return len(self._data)
@@ -18,3 +22,11 @@ class Queue:
         if index < 0 or index > len(self._data):
             raise IndexError("Invalid index")
         return self._data[index]
+
+    def __next__(self):
+        try:
+            valor = self._data[self.index]
+            self.index += 1
+            return valor
+        except IndexError:
+            raise StopIteration
