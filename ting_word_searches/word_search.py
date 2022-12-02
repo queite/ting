@@ -1,4 +1,14 @@
-def get_occurrences(word, instance):
+def exists_word(word, instance):
+    result = search_by_word(word, instance)
+
+    for dict in result:
+        for occurrence in dict['ocorrencias']:
+            del occurrence['conteudo']
+
+    return result
+
+
+def search_by_word(word, instance):
     result = []
 
     for dict in instance:
@@ -18,17 +28,3 @@ def get_occurrences(word, instance):
             }
             result.append(data)
     return result
-
-
-def exists_word(word, instance):
-    result = get_occurrences(word, instance)
-
-    for dict in result:
-        for occurrence in dict['ocorrencias']:
-            del occurrence['conteudo']
-
-    return result
-
-
-def search_by_word(word, instance):
-    return get_occurrences(word, instance)
