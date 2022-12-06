@@ -1,3 +1,4 @@
+import json
 import sys
 
 from ting_file_management.file_management import txt_importer
@@ -18,8 +19,7 @@ def process(path_file: str, instance: Queue):
     }
 
     instance.enqueue(new_dict)
-    print(new_dict)
-    sys.stdout.write(str(new_dict))
+    sys.stdout.write(json.dumps(new_dict, indent=4) + '\n')
 
 
 def remove(instance: Queue):
